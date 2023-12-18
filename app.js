@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors')
 const { ethers } = require('ethers');
 require('dotenv').config();
 
@@ -50,7 +51,7 @@ const contractAddress = process.env.CONTRACT_ADDRESS
 const contract = new ethers.Contract(contractAddress, contractABI, relayerWallet);
 
 // Route to handle meta-transactions
-app.get('/mint/:to/:tokenId', async (req, res) => {
+app.get('/mint/:to/:tokenId', cors(), async (req, res) => {
     try {
       // const { to, tokenId } = req.body;
       const { to, tokenId } = req.params;
